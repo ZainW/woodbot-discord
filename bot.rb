@@ -11,7 +11,6 @@ module WoodBot
     Builds
   ]
   CONFIG = OpenStruct.new YAML.load_file 'config/application.yaml'
-  binding.pry
   token = CONFIG[ENV["WOODBOT_ENV"]].TOKEN
   clientid = CONFIG[ENV["WOODBOT_ENV"]].CLIENTID
 
