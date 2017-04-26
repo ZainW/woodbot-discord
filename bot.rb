@@ -1,10 +1,11 @@
 require 'discordrb'
 require 'yaml'
 require 'pry'
-
 module WoodBot
-
-  Dir['modules/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" }
+  Dir['modules/*.rb'].each { |r|
+    require_relative r
+    puts "Loaded: #{r}"
+  }
   modules = [
     General,
     # Heroes,
