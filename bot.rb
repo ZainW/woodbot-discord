@@ -2,8 +2,6 @@ require 'discordrb'
 require 'yaml'
 require 'pry'
 
-require_relative 'config.rb'
-
 module WoodBot
 
   Dir['modules/*.rb'].each { |r| require_relative r; puts "Loaded: #{r}" }
@@ -12,10 +10,12 @@ module WoodBot
     # Heroes,
     Builds
   ]
-  CONFIG = Config.new('config/application.yml')
-  token = CONFIG.DEVTOKEN if ENV["WOODBOT_ENV"] == "development"
-  clientid = CONFIG.DEVCLIENTID if ENV["WOODBOT_ENV"] == "development"
-  bot = Discordrb::Commands::CommandBot.new token: token, client_id: clientid, prefix: '-'
+  CONFIG = OpenStruct.new YAML.load_file 'config/application.yaml'
+  binding.pry
+  token = CONFIG[ENV["WOODBOT_ENV"]].TOKEN
+  clientid = CONFIG[ENV["WOODBOT_ENV"]].CLIENTID
+
+    bot = Discordrb::Commands::CommandBot.new token: token, client_id: clientid, prefix: '-'
 
   modules.each { |m| bot.include! m; puts "Included: #{m}" }
   puts "This bot's invite URL is #{bot.invite_url}."
