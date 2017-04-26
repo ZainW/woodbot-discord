@@ -6,7 +6,7 @@ module WoodBot
   module Heroes
     extend Discordrb::Commands::CommandContainer
 
-    command(:hero, description: "Returns Hero", usage:"whero <hero>", min_args: 1, max_args: 1) do |event, hero|
+    command(:hero, description: "Returns Hero", usage:"hero <hero>", min_args: 1, max_args: 1) do |event, hero|
       event.channel.start_typing
       uri = URI.parse("http://localhost/heroes/#{hero}")
       http = Net::HTTP.new(uri.host, 3000)
@@ -14,7 +14,7 @@ module WoodBot
       if response.code == 200
 
       end
-      hero = JSON.parse(response.body)[0]
+      hero = JSON.parse(response.body)
 
       event.channel.send_embed { |e|
         e.title = "Hero: #{hero["name"]}"
@@ -22,7 +22,6 @@ module WoodBot
           name: "Type: #{hero["hero_type"].capitalize}",
           value: "Attack Type: #{hero["attack_type"]}    Attack Range: #{hero["attack_range"]}"
           )
-        # e.description = "Type: #{hero["hero_type"].capitalize}\nAttack Type: #{hero["attack_type"]}    Attack Range: #{hero["attack_range"]}"
       }
     end
   end
