@@ -10,7 +10,7 @@ module WoodBot
       uri.query = URI.encode_www_form(params)
       response = Net::HTTP.get_response(uri)
       build = JSON.parse(response.body) if response.is_a?(Net::HTTPSuccess)
-      embed_items = build['items'].join(",").gsub!(",", " ")
+      embed_items = build['items'].join(",").tr!(",", " ")
       build.delete('items')
       event.channel.send_embed do |embed|
         embed.color = 0x059f05
