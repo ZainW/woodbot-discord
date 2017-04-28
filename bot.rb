@@ -8,7 +8,7 @@ module WoodBot
   }
   modules = [
     General,
-    # Heroes,
+    Heroes,
     Builds
   ]
   CONFIG = OpenStruct.new YAML.load_file 'config/application.yaml'

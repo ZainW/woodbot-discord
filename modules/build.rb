@@ -23,7 +23,6 @@ module WoodBot
           embed.add_field name: key.capitalize, value: value.to_s, inline: true
         end
       end
-
     end
   end
 end
