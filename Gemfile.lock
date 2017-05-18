@@ -69,9 +69,9 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  capistrano (~> 3.8)
-  capistrano-bundler (~> 1.2)
-  capistrano-rbenv (~> 2.0)
+  capistrano
+  capistrano-bundler
+  capistrano-rbenv
   discordrb
   pry
 
