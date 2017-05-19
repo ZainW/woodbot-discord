@@ -1,7 +1,6 @@
-require 'discordrb'
-require 'yaml'
-require 'pry'
 module WoodBot
+  require 'discordrb'
+  require 'yaml'
   Dir['modules/*.rb'].each { |r|
     require_relative r
     puts "Loaded: #{r}"
