@@ -1,6 +1,7 @@
 module WoodBot
   require 'discordrb'
   require 'yaml'
+  # require 'pry'
   Dir['modules/*.rb'].each { |r|
     require_relative r
     puts "Loaded: #{r}"
@@ -16,5 +17,6 @@ module WoodBot
 
   bot = Discordrb::Commands::CommandBot.new token: token, client_id: clientid, prefix: '-'
   modules.each { |m| bot.include! m; puts "Included: #{m}" }
+  puts bot.invite_url
   bot.run
 end
